@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* Public URL */
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
+Route::get('/search', [SongController::class, 'search'])->name('song.search');
+
+/* Authenticated URL */
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

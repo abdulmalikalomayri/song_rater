@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rate;
 
 class RateController extends Controller
 {
@@ -27,8 +28,33 @@ class RateController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        dd($request);
+        
+        // validate the request 
+        // $request->validate([
+        //     'name' => 'required',
+        //     'song_id' => 'required',
+        // ]);
+
+        // echo var_dump($request->name);
+        // add song to the database 
+        // Rate::updateOrCreate(
+        //     ['name' => $request->name, 'song_id' => $request->song_id],
+        //     ['count' => Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1]
+        // );
+
+        $test = new Rate();
+        dd($request->all());
+        $rate->name = $request->name;
+        
+        $rate = new Rate();
+        $rate->name = $request->name;
+        $rate->song_id = $request->song_id;
+        $rate->count = Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1;
+        
+        $rate->save();
+
+        dd($rate);
+        return redirect()->back()->with('success', 'Rate added successfully');
     }
 
     /**

@@ -17,6 +17,5 @@ class Rate extends Model
     protected $fillable = [
         'name',
         'count',
-    ];
-    
+    ];    
 }

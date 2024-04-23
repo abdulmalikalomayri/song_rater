@@ -17,7 +17,14 @@
                 @if(isset($results))
                     <ul>
                         @foreach($results->tracks->items as $item)
+                            <div class="inline">
                             <li>{{ $item->name }} by {{ $item->artists[0]->name }}</li>
+                            <!-- add rate song upvote -->
+                            <form action="{{ route('rate.store') }}" method="POST">
+                                @csrf
+                                <button type="submit" name="song_id" value="{{ $item->id }}" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">Upvote</button>
+                            </form>
+                            <div>
                         @endforeach
                     </ul>
                 @endif

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\RateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/search', [SongController::class, 'search'])->name('song.search');
+Route::post('/rate', [RateController::class, 'store'])->name('rate.store');
 
 /* Authenticated URL */
 Route::get('/dashboard', function () {

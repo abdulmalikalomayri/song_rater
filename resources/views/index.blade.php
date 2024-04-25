@@ -15,21 +15,39 @@
                 </form>
 
                 @if(isset($results))
-                    <ul>
+                        <!-- Card Blog -->
+                    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                    <!-- Grid -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($results->tracks->items as $item)
-                            <div class="inline">
-                                <li class="text-white">{{ $item->name }} by {{ $item->artists[0]->name }}</li>
-                                <!-- add rate song upvote -->
-                                {{-- <form action="{{ route('rate.store') }}" method="PUT"> --}}
-                                    <form action="{{ route('rate.store', ['id' => $item->id]) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="hidden" name="song_name" value="{{ $item->name }}">
-                                    <button type="submit" name="song_id" value="{{ $item->artists[0]->id }}" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">Upvote</button>
-                                </form>
-                            <div>
+                  
+                            <!-- Card -->
+                        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm   dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                        <div class="p-4 md:p-6">
+                            <span class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
+                            {{ $item->artists[0]->name }}
+                            </span>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                            {{ $item->name }}
+                            </h3>
+                             
+                            {{-- <p class="mt-3 text-gray-500 dark:text-neutral-500">
+                            A software that develops products for software developers and developments.
+                            </p> --}}
+                        </div>
+                       
+                            <form action="{{ route('rate.store', ['id' => $item->id]) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="song_name" value="{{ $item->name }}">
+                                <button type="submit" name="song_id" value="{{ $item->artists[0]->id }}" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Upvote</button>
+                            </form>
+                        
+                        </div>
+                        <!-- End Card -->
                         @endforeach
-                    </ul>
+                    </div>
+                    </div>
                 @endif
                 </div>
             </div>

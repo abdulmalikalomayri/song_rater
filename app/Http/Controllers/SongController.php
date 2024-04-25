@@ -9,6 +9,10 @@ class SongController extends Controller
 {
     public function search(Request $request)
     {
+
+        // $collection = collect([1, 2, 3]);
+        // dd($collection->all());
+
         $session = new SpotifySession(
             env('SPOTIFY_CLIENT_ID'),
             env('SPOTIFY_CLIENT_SECRET'),
@@ -23,6 +27,8 @@ class SongController extends Controller
 
             $query = $request->input('query');
             $results = $api->search($query, 'track');
+
+            // dd($results);
 
             return view('index', compact('results'));
         } else {

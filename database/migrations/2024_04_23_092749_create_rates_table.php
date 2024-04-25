@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->string('song_id');
+            // $table->string('songid');
             $table->string('name');
             $table->integer('count')->default(0);
             $table->timestamps();

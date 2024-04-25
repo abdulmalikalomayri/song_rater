@@ -18,13 +18,13 @@
                     <ul>
                         @foreach($results->tracks->items as $item)
                             <div class="inline">
-                                <li>{{ $item->name }} by {{ $item->artists[0]->name }}</li>
+                                <li class="text-white">{{ $item->name }} by {{ $item->artists[0]->name }}</li>
                                 <!-- add rate song upvote -->
                                 {{-- <form action="{{ route('rate.store') }}" method="PUT"> --}}
                                     <form action="{{ route('rate.store', ['id' => $item->id]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <input type="hidden" name="song_name" value="{{ $item->song_name }}">
+                                    <input type="hidden" name="song_name" value="{{ $item->name }}">
                                     <button type="submit" name="song_id" value="{{ $item->artists[0]->id }}" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">Upvote</button>
                                 </form>
                             <div>

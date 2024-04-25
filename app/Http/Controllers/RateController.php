@@ -42,18 +42,42 @@ class RateController extends Controller
         //     ['count' => Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1]
         // );
 
-        $test = new Rate();
-        dd($request->all());
-        $rate->name = $request->name;
+        // $test = new Rate();
+        // dd($request->all());
+        // $rate->name = $request->name;
         
-        $rate = new Rate();
-        $rate->name = $request->name;
-        $rate->song_id = $request->song_id;
-        $rate->count = Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1;
+        // $rate = new Rate();
+        // $rate->name = $request->name;
+        // $rate->song_id = $request->song_id;
+        // $rate->count = Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1;
         
-        $rate->save();
+        // $rate->save();
 
-        dd($rate);
+        // dd($rate);
+
+        // create a new rate record if it doesn't exist
+         // create a new rate record if it doesn't exist
+        // $collection = collect([$request->song_name, $request->song_id]);
+        // dd($collection->all());
+
+        if(Rate::where('name', $request->song_name)->exists()) {
+            $increment = Rate::where('name', $request->song_name)->value('count') +1;
+            Rate::updateOrCreate(
+                ["name" => $request->song_name],
+                ["count" => $increment]
+                // ['name' => $request->song_name, ]
+                // ['count' => Rate::where('name', $request->name)->where('songid', $request->song_id)->value('count') + 1]
+                // ['count' => Rate::where('name', $request->name)->value('count') + 1]
+            );
+        } 
+        else {
+            Rate::create([
+                'name' => $request->song_name,
+                'count' => 1
+            ]);
+        }
+
+
         return redirect()->back()->with('success', 'Rate added successfully');
     }
 

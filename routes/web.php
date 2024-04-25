@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/search', [SongController::class, 'search'])->name('song.search');
-Route::put('/rate/{id}', [RateController::class, 'store'])->name('rate.store');
+Route::put('/rate/{id}/', [RateController::class, 'store'])->name('rate.store');
 
 /* Authenticated URL */
 Route::get('/dashboard', function () {

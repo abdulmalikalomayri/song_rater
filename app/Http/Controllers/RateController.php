@@ -61,6 +61,7 @@ class RateController extends Controller
         // dd($collection->all());
 
         if(Rate::where('name', $request->song_name)->exists()) {
+            
             $increment = Rate::where('name', $request->song_name)->value('count') +1;
             Rate::updateOrCreate(
                 ["name" => $request->song_name],

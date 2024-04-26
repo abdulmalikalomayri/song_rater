@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\RateController;
+use App\Http\Controllers\SongLikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Upvote and Downvote
+Route::post('/songs/{rate}/likes', [SongLikeController::class, 'store'])->name('songs.likes');
+
 
 require __DIR__.'/auth.php';

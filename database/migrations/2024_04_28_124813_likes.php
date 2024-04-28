@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('likes', function (Blueprint $table) {
+           //
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('song_id')->constrained()->onDelete('cascade');
+            // foreign key
+            $table->unsignedBigInteger('user_id')->onDelete('cascade'); 
+            $table->unsignedBigInteger('rate_id')->onDelete('cascade'); 
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('likes');
+        //
     }
 };

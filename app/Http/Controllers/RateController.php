@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rate;
+use App\Models\User;
 
 class RateController extends Controller
 {
@@ -26,7 +27,7 @@ class RateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(User $user, Request $request)
     {
         
         // validate the request 
@@ -60,6 +61,15 @@ class RateController extends Controller
         // $collection = collect([$request->song_name, $request->song_id]);
         // dd($collection->all());
 
+        // user likes a song
+        // get auth user id
+        $userid = auth()->user();
+        dd($userid->id);
+        $user->likes()->create([
+            'rate_id' => $userid->id
+        ]);
+        
+
         if(Rate::where('name', $request->song_name)->exists()) {
             
             $increment = Rate::where('name', $request->song_name)->value('count') +1;
@@ -77,6 +87,8 @@ class RateController extends Controller
                 'count' => 1
             ]);
         }
+
+
 
 
         return redirect()->back()->with('success', 'Rate added successfully');

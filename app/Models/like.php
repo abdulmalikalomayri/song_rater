@@ -13,4 +13,11 @@ class like extends Model
         'user_id',
         'song_id'
     ];
+
+    public function likedBy(User $user, Rate $rate)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    
 }

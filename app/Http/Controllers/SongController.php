@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SpotifyWebAPI\SpotifyWebAPI;
 use SpotifyWebAPI\Session as SpotifySession;
+use App\Models\Rate;
+use App\Models\Like;
 
 class SongController extends Controller
 {
     public function search(Request $request)
     {
 
-        // $collection = collect([1, 2, 3]);
+        $collection = collect([1, 2, 3]);
         // dd($collection->all());
+        
+        // how many songs are user likes
+        $likes = Like::where('user_id', auth()->id())->get();
+
+        $rate = new Rate();
 
         $session = new SpotifySession(
             env('SPOTIFY_CLIENT_ID'),
@@ -30,7 +37,7 @@ class SongController extends Controller
 
             // dd($results);
 
-            return view('index', compact('results'));
+            return view('index', compact('results', 'likes', 'rate'));
         } else {
             // Handle error when token request fails
             return redirect()->back()->with('error', 'Unable to retrieve access token');

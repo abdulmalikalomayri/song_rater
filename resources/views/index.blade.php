@@ -43,6 +43,9 @@
                             <span class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
                             {{ $item->artists[0]->name }}
                             </span>
+                            <span class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
+                            {{ $item->id }}
+                            </span>
                             <div class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
                             @if($item->album->images)
                                 <img src="{{ $item->album->images[0]->url }}" alt="image" class="object-cover w-full h-48">
@@ -56,23 +59,35 @@
                             A software that develops products for software developers and developments.
                             </p> --}}
                         </div>
-                       
+                            @if($rate->join('likes', 'likes.rate_id', '=', 'rates.id')->where('songid', $item->id)->where('likes.user_id', auth()->user()->id)->count() == 0)
                             <form action="{{ route('rate.store', ['id' => $item->id]) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 {{-- Get auth user id --}}
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id}}">
                                 <input type="hidden" name="song_name" value="{{ $item->name }}">
-
-                                
-                                <button type="submit" name="song_id" value="{{ $item->artists[0]->id }}" 
+                                {{-- if user haven't rate the song before --}}
+                                {{-- @if($rate->where('songid', $item->id)->count() == 0) --}}
+                                    <button type="submit" name="song_id" value="{{ $item->id }}" 
                                     class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  
-                                    bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none 
-                                    dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
-                                    Upvote
-                                </button>
+                                    bg-white text-gray-800 shadow-sm hover:bg-gray-50 
+                                    dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700">
+                                    Upvote</button>
                             </form>
-                        
+                            
+                            @else
+                                <form action="{{ route('rate.destroy', ['id' => $item->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                {{-- if user have liked the song before --}}
+                                <button type="submit" name="song_id" value="{{ $item->id }}" 
+                                    class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  
+                                    bg-white text-gray-800 shadow-sm hover:bg-gray-50 
+                                    dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700">
+                                    Downvote</button>
+                                @endif
+                                <div>{{ $likes->count() }}</div>
+                            </form>
                         </div>
                         <!-- End Card -->
                         @endforeach

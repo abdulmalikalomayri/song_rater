@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::get('/search', [SongController::class, 'search'])->name('song.search');
 Route::put('/rate/{id}/', [RateController::class, 'store'])->name('rate.store');
+Route::delete('/rate/{id}/', [RateController::class, 'destroy'])->name('rate.destroy');
 
 /* Authenticated URL */
 Route::get('/dashboard', function () {
@@ -36,8 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Upvote and Downvote
-Route::post('/songs/{rate}/likes', [SongLikeController::class, 'store'])->name('songs.likes');
 
 
 require __DIR__.'/auth.php';

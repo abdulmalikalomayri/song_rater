@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Like;
 
 class Rate extends Model
 {
@@ -18,4 +19,14 @@ class Rate extends Model
         'name',
         'count',
     ];    
+
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

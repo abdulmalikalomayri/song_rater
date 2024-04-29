@@ -27,7 +27,7 @@ class RateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(User $user, Request $request)
+    public function store(Rate $rate, Request $request)
     {
         
         // validate the request 
@@ -63,13 +63,15 @@ class RateController extends Controller
 
         // user likes a song
         // get auth user id
-        $userid = auth()->user();
-        dd($userid->id);
-        $user->likes()->create([
-            'rate_id' => $userid->id
-        ]);
+        // dd($request->song_id);
         
+        
+        // if the user have liked the song before, don't add to the rates table and return an error message
+        if(Rate::where('name', $request->song_name)->exists()) {
+            return redirect()->back()->with('error', 'You have already liked this song');
+        }
 
+            // add to rates table
         if(Rate::where('name', $request->song_name)->exists()) {
             
             $increment = Rate::where('name', $request->song_name)->value('count') +1;
@@ -89,7 +91,26 @@ class RateController extends Controller
         }
 
 
+        // If the rate exists, increment its count, otherwise create a new rate with count 1
+        $rate = Rate::updateOrCreate(
+            ["name" => $request->song_name],
+            ["count" => Rate::where('name', $request->song_name)->value('count') + 1]
+        );
 
+        // Create a new like with the id of the rate that was just created or updated
+        $rate->likes()->create([
+            'user_id' => 1, // Replace this with the id of the authenticated user
+            'rate_id' => $rate->id
+        ]);
+
+        return redirect()->back()->with('success', 'Rate added successfully');
+
+        // $rate->likes()->create([
+        //     'user_id' => 1,
+        //     'rate_id' => 1
+        //     // 'rate_id' => Rate::where('name', $request->song_name)->value('id')
+            
+        // ]);
 
         return redirect()->back()->with('success', 'Rate added successfully');
     }

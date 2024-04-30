@@ -17,7 +17,7 @@
 
     <!-- Button Group -->
     <div class="flex items-center gap-x-2 ms-auto py-1 md:ps-6 md:order-3 md:col-span-3">
-      <a href="/login" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-xl border border-gray-200 text-black hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:hover:bg-white/10 dark:text-slate-950 dark:hover:text-slate-950">
+      <a href="/login" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-xl border border-neutral-200 text-black hover:bg-neutral-100 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:hover:bg-white/10 dark:text-slate-950 dark:hover:text-slate-950">
         Login
       </a>
       <a href="/register" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-xl border border-transparent bg-lime-400 text-black hover:bg-lime-500 transition disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-lime-500">
@@ -25,7 +25,7 @@
       </a>
 
       <div class="md:hidden">
-        <button type="button" class="hs-collapse-toggle size-[38px] flex justify-center items-center text-sm font-semibold rounded-xl border border-gray-200 text-black hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-slate-950 dark:border-neutral-700 dark:hover:bg-neutral-700" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
+        <button type="button" class="hs-collapse-toggle size-[38px] flex justify-center items-center text-sm font-semibold rounded-xl border border-neutral-200 text-black hover:bg-neutral-100 disabled:opacity-50 disabled:pointer-events-none dark:text-slate-950 dark:border-neutral-700 dark:hover:bg-neutral-700" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
           <svg class="hs-collapse-open:hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
           <svg class="hs-collapse-open:block hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
@@ -40,10 +40,10 @@
           <a class="relative inline-block text-black before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-lime-400 dark:text-slate-950" href="#" aria-current="page">Dashboard</a>
         </div>
         <div>
-          <a class="inline-block text-black hover:text-gray-600 dark:text-slate-950 dark:hover:text-neutral-300" href="#">Leaderboard</a>
+          <a class="inline-block text-black hover:text-neutral-600 dark:text-slate-950 dark:hover:text-neutral-300" href="#">Leaderboard</a>
         </div>
         <div>
-          <a class="inline-block text-black hover:text-gray-600 dark:text-slate-950 dark:hover:text-neutral-300" href="#">About</a>
+          <a class="inline-block text-black hover:text-neutral-600 dark:text-slate-950 dark:hover:text-neutral-300" href="#">About</a>
       </div>
     </div>
     <!-- End Collapse -->

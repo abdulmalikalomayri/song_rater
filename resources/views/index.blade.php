@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-neutral-800 dark:text-neutral-200 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-950">Search for a song/artist</h1>
+                <h1 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-950">Search for a song/artist</h1>
                     <form action="{{ route('song.search') }}" method="GET">
                     <input type="text" name="query" placeholder="Search for a song" class="text-slate-950">
                     <button type="submit" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow mb-4">Search</button>
@@ -38,7 +38,7 @@
                         @foreach($results->tracks->items as $item)
                   
                             <!-- Card -->
-                        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm   dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                        <div class="group flex flex-col h-full bg-white border border-neutral-200 shadow-sm   dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
                         <div class="p-4 md:p-6">
                             <span class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
                             {{ $item->artists[0]->name }}
@@ -51,11 +51,11 @@
                                 <img src="{{ $item->album->images[0]->url }}" alt="image" class="object-cover w-full h-48">
                             @endif
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-300 dark:hover:text-white">
                             {{ $item->name }}
                             </h3>
                              
-                            {{-- <p class="mt-3 text-gray-500 dark:text-neutral-500">
+                            {{-- <p class="mt-3 text-neutral-500 dark:text-neutral-500">
                             A software that develops products for software developers and developments.
                             </p> --}}
                         </div>
@@ -70,7 +70,7 @@
                                 {{-- @if($rate->where('songid', $item->id)->count() == 0) --}}
                                     <button type="submit" name="song_id" value="{{ $item->id }}" 
                                     class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  
-                                    bg-white text-gray-800 shadow-sm hover:bg-gray-50 
+                                    bg-white text-neutral-800 shadow-sm hover:bg-neutral-50 
                                     dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700">
                                     Upvote</button>
                             </form>
@@ -82,7 +82,7 @@
                                 {{-- if user have liked the song before --}}
                                 <button type="submit" name="song_id" value="{{ $item->id }}" 
                                     class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  
-                                    bg-white text-gray-800 shadow-sm hover:bg-gray-50 
+                                    bg-white text-neutral-800 shadow-sm hover:bg-neutral-50 
                                     dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700">
                                     Downvote</button>
                                 @endif

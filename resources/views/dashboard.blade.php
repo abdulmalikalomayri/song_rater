@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl leading-tight">
+        <h2 class="font-semibold text-xl text-neutral-800 dark:text-neutral-200 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -23,15 +23,15 @@
                         @foreach($results->tracks->items as $item)
                   
                             <!-- Card -->
-                        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm   dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                        <div class="group flex flex-col h-full bg-white border border-neutral-200 shadow-sm   dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
                         <div class="p-4 md:p-6">
                             <span class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
                             {{ $item->artists[0]->name }}
                             </span>
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-300 dark:hover:text-white">
                             {{ $item->name }}
                             </h3>
-                            {{-- <p class="mt-3 text-gray-500 dark:text-neutral-500">
+                            {{-- <p class="mt-3 text-neutral-500 dark:text-neutral-500">
                             A software that develops products for software developers and developments.
                             </p> --}}
                         </div>
@@ -40,7 +40,7 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="song_name" value="{{ $item->name }}">
-                                <button type="submit" name="song_id" value="{{ $item->artists[0]->id }}" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Upvote</button>
+                                <button type="submit" name="song_id" value="{{ $item->artists[0]->id }}" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  bg-white text-neutral-800 shadow-sm hover:bg-neutral-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Upvote</button>
                             </form>
                         
                         </div>

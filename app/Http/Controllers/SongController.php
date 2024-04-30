@@ -12,6 +12,11 @@ class SongController extends Controller
     public function search(Request $request)
     {
 
+        // if request is empty
+        if (!$request->input('query')) {
+            return view('index');
+        }
+
         $collection = collect([1, 2, 3]);
         // dd($collection->all());
         

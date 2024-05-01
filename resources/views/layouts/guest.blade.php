@@ -15,8 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="">
-    @include('components.navbar')
-    
+     
      <!-- Page Content -->
         <main>
             {{ $slot }}

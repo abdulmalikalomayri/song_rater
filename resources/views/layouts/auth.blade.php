@@ -14,10 +14,13 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-
-            <!-- Page Content -->
-            @yield('content')
-        </div>
+    <body class="">
+    @include('components.navbar')
+    
+     <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
+         
     </body>
 </html>

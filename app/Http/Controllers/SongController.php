@@ -10,7 +10,10 @@ use App\Models\Like;
 class SongController extends Controller
 {
     public function search(Request $request)
-    {
+    {   
+        if(!auth()->check()) {
+            return redirect()->route('login');
+        }
 
         // if request is empty
         if (!$request->input('query')) {
@@ -42,7 +45,7 @@ class SongController extends Controller
 
             // dd($results);
 
-            return view('index', compact('results', 'likes', 'rate'));
+            return view('dashboard', compact('results', 'likes', 'rate'));
         } else {
             // Handle error when token request fails
             return redirect()->back()->with('error', 'Unable to retrieve access token');

@@ -22,11 +22,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/search', [SongController::class, 'search'])->name('song.search');
+Route::get('/dashboard/search', [SongController::class, 'search'])->name('song.search');
 Route::put('/rate/{id}/', [RateController::class, 'store'])->name('rate.store');
 Route::delete('/rate/{id}/', [RateController::class, 'destroy'])->name('rate.destroy');
 
 /* Authenticated URL */
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center dark:bg-white">
                     <a href="{{ route('dashboard') }}">
                         <svg width="150" height="35" viewBox="0 0 455 148" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M454.355 69.5547V78.5391C454.355 89.2161 453.021 98.7865 450.352 107.25C447.682 115.714 443.841 122.908 438.828 128.832C433.815 134.757 427.793 139.281 420.762 142.406C413.796 145.531 405.983 147.094 397.324 147.094C388.926 147.094 381.211 145.531 374.18 142.406C367.214 139.281 361.159 134.757 356.016 128.832C350.938 122.908 346.999 115.714 344.199 107.25C341.4 98.7865 340 89.2161 340 78.5391V69.5547C340 58.8776 341.367 49.3398 344.102 40.9414C346.901 32.4779 350.84 25.2839 355.918 19.3594C360.996 13.3698 367.018 8.8125 373.984 5.6875C381.016 2.5625 388.73 1 397.129 1C405.788 1 413.6 2.5625 420.566 5.6875C427.598 8.8125 433.62 13.3698 438.633 19.3594C443.711 25.2839 447.585 32.4779 450.254 40.9414C452.988 49.3398 454.355 58.8776 454.355 69.5547ZM435.703 78.5391V69.3594C435.703 60.8958 434.824 53.4089 433.066 46.8984C431.374 40.388 428.867 34.9193 425.547 30.4922C422.227 26.0651 418.158 22.7122 413.34 20.4336C408.587 18.1549 403.184 17.0156 397.129 17.0156C391.27 17.0156 385.964 18.1549 381.211 20.4336C376.523 22.7122 372.487 26.0651 369.102 30.4922C365.781 34.9193 363.21 40.388 361.387 46.8984C359.564 53.4089 358.652 60.8958 358.652 69.3594V78.5391C358.652 87.0677 359.564 94.6198 361.387 101.195C363.21 107.706 365.814 113.207 369.199 117.699C372.65 122.126 376.719 125.479 381.406 127.758C386.159 130.036 391.465 131.176 397.324 131.176C403.444 131.176 408.88 130.036 413.633 127.758C418.385 125.479 422.389 122.126 425.645 117.699C428.965 113.207 431.471 107.706 433.164 101.195C434.857 94.6198 435.703 87.0677 435.703 78.5391Z" fill="#222222"/>
@@ -22,7 +22,7 @@
                     </x-nav-link>
                 </div>
             </div>
-
+            @auth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -56,7 +56,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-
+            @endauth
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-500 dark:hover:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-900 focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900 focus:text-neutral-500 dark:focus:text-neutral-400 transition duration-150 ease-in-out">
@@ -78,6 +78,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @auth
         <div class="pt-4 pb-1 border-t border-neutral-200 dark:border-neutral-600">
             <div class="px-4">
                 <div class="font-medium text-base text-neutral-800 dark:text-neutral-200">{{ Auth::user()->name }}</div>
@@ -101,5 +102,6 @@
                 </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>

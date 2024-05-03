@@ -59,15 +59,15 @@
                             A software that develops products for software developers and developments.
                             </p> --}}
                         </div>
-                            @if($rate->join('likes', 'likes.rate_id', '=', 'rates.id')->where('songid', $item->id)->where('likes.user_id', auth()->user()->id)->count() == 0)
-                            <form action="{{ route('rate.store', ['id' => $item->id]) }}" method="POST">
+                            @if($leaderboard->join('favorites', 'favorites.song_id', '=', 'leaderboards.id')->where('song_name', $item->id)->where('favorites.user_id', auth()->user()->id)->count() == 0)
+                            <form action="{{ route('favorite.store', ['id' => $item->id]) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 {{-- Get auth user id --}}
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id}}">
                                 <input type="hidden" name="song_name" value="{{ $item->name }}">
-                                {{-- if user haven't rate the song before --}}
-                                {{-- @if($rate->where('songid', $item->id)->count() == 0) --}}
+                                {{-- if user haven't favorite the song before --}}
+                                {{-- @if($leaderboard->where('songid', $item->id)->count() == 0) --}}
                                     <button type="submit" name="song_id" value="{{ $item->id }}" 
                                     class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium  
                                     bg-white text-neutral-800 shadow-sm hover:bg-neutral-50 
@@ -76,7 +76,7 @@
                             </form>
                             
                             @else
-                                <form action="{{ route('rate.destroy', ['id' => $item->id]) }}" method="POST">
+                                <form action="{{ route('favorite.destroyFavorite', ['id' => $item->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 {{-- if user have liked the song before --}}

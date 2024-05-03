@@ -31,41 +31,6 @@ class RateController extends Controller
     public function store(Rate $rate, Request $request)
     {
         
-        // validate the request 
-        // $request->validate([
-        //     'name' => 'required',
-        //     'song_id' => 'required',
-        // ]);
-
-        // echo var_dump($request->name);
-        // add song to the database 
-        // Rate::updateOrCreate(
-        //     ['name' => $request->name, 'song_id' => $request->song_id],
-        //     ['count' => Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1]
-        // );
-
-        // $test = new Rate();
-        // dd($request->all());
-        // $rate->name = $request->name;
-        
-        // $rate = new Rate();
-        // $rate->name = $request->name;
-        // $rate->song_id = $request->song_id;
-        // $rate->count = Rate::where('name', $request->name)->where('song_id', $request->song_id)->value('count') + 1;
-        
-        // $rate->save();
-
-        // dd($rate);
-
-        // create a new rate record if it doesn't exist
-         // create a new rate record if it doesn't exist
-        // $collection = collect([$request->song_name, $request->song_id]);
-        // dd($collection->all());
-
-        // user likes a song
-        // get auth user id
-        // dd($request->song_id);
-        
         
         // if the user have liked the song before, don't add to the rates table and return an error message
         if(Like::where('user_id', auth()->id() )->where('rate_id', Rate::where('songid', $request->song_id)->value('id'))->exists()){
@@ -80,9 +45,7 @@ class RateController extends Controller
                 ["name" => $request->song_name],
                 ["songid" => $request->song_id],
                 ["count" => $increment]
-                // ['name' => $request->song_name, ]
-                // ['count' => Rate::where('name', $request->name)->where('songid', $request->song_id)->value('count') + 1]
-                // ['count' => Rate::where('name', $request->name)->value('count') + 1]
+   
             );
         } 
         else {
@@ -108,11 +71,6 @@ class RateController extends Controller
 
         return redirect()->back()->with('success', 'Rate added successfully');
 
-        // $rate->likes()->create([
-        //     'user_id' => 1,
-        //     'rate_id' => 1
-        //     // 'rate_id' => Rate::where('name', $request->song_name)->value('id')
-        // ]);
 
         return redirect()->back()->with('success', 'Rate added successfully');
     }

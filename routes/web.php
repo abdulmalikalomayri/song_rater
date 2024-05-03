@@ -23,8 +23,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard/search', [SongController::class, 'search'])->name('song.search');
-Route::put('/rate/{id}/', [RateController::class, 'store'])->name('rate.store');
-Route::delete('/rate/{id}/', [RateController::class, 'destroy'])->name('rate.destroy');
+Route::put('/favorite/{id}/', [SongController::class, 'storeFavorite'])->name('favorite.store');
+Route::delete('/favorite/{id}/', [RateController::class, 'destroyFavorite'])->name('favorite.destroy');
 
 /* Authenticated URL */
 // Route::get('/dashboard', function () {

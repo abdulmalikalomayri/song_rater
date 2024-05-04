@@ -22,9 +22,7 @@ Route::get('/',  function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/leaderboard',  function () {
-    return view('leaderboard');
-})->name('leaderboard');
+Route::get('/leaderboard', [SongController::class, 'leaderboard'])->name('leaderboard');
 
 Route::get('/favoritesongs',  function () {
     return view('profile.favoritesongs');

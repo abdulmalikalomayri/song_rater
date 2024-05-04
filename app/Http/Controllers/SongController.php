@@ -144,5 +144,12 @@ class SongController extends Controller
         }
     }
 
+
+    public function leaderboard() 
+    {
+        $leaderboard = Leaderboard::orderBy('count', 'desc')->paginate(10);
+        return view('leaderboard', compact('leaderboard'));
+    }
+
 }
 ?>

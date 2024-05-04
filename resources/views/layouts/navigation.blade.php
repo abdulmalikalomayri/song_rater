@@ -79,6 +79,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
+                {{ __('Leaderboard') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -92,6 +95,9 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('profile.favoritesongs')">
+                    {{ __('Favorite songs') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

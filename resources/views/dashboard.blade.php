@@ -93,7 +93,12 @@
                         @endforeach
                     </div>
                     </div>
+               
+                @else
+                    <p class="content-endml-2 text-xl font-semibold text-neutral-800 dark:text-neutral-300 dark:hover:text-white">No songs found</p>
+
                 @endif
+
                 </div>
             </div>
         </div>

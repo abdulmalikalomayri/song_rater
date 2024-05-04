@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 /* Public URL */
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/',  function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/dashboard/search', [SongController::class, 'search'])->name('song.search');
 Route::put('/favorite/{id}/', [SongController::class, 'storeFavorite'])->name('favorite.store');

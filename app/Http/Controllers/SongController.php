@@ -62,8 +62,17 @@ class SongController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function storeFavorite(Request $request)
     {
+
+        // dd($request->artist_name);
+
         // check if the user is logged in
         if(!auth()->check()) {
             return redirect()->route('login');
@@ -74,49 +83,65 @@ class SongController extends Controller
             return redirect()->back()->with('error', 'You have already liked this song');
         }
 
-        // first time someone is liking the song or the song is not in the leaderboard table
-        if(Leaderboard::where('name', $request->song_name)->exists()) {
-            $increment = Leaderboard::where('name', $request->song_name)->value('count') +1;
+       // if the song has been liked before, increment the count by 1
+        if(Leaderboard::where('song_name', $request->song_name)->exists()) {
+            $increment = Leaderboard::where('song_name', $request->song_name)->value('count') +1;
             Leaderboard::updateOrCreate(
-                ["name" => $request->song_name],
-                ["songid" => $request->song_id],
-                ["count" => $increment]
+                ["song_name" => $request->song_name],
+                ["song_id" => $request->song_id],
+                ["count" => $increment],
+                ['artist_name' => $request->artist_name]
             );
         } 
-        // if the song is not in the leaderboard table, increment the count by 1
+        // if the song have not been liked before, add to the leaderboard table and set the count to 1
         else {
             Leaderboard::create([
-                'name' => $request->song_name,
-                'count' => 1,
-                'songid' => $request->song_id
+                'song_name' => $request->song_name,
+                'artist_name' => $request->artist_name,
+                'song_id' => $request->song_id,
+                'count' => 1
             ]);
         }
 
         // add to user's favorite table 
         Favorites::create([
             'user_id' => auth()->id(),
-            'song_id' => Leaderboard::where('songid', $request->song_id)->value('id')
+            'song_id' => Leaderboard::where('song_id', $request->song_id)->value('id'),
+            'artist_name' => $request->artist_name
         ]);
 
         return redirect()->back()->with('success', 'Song liked successfully');
     }
 
-    public function destroyFavorite(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Favorites  $favorites
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyFavorite(string $id)
     {
-        // check if the user is logged in
-        if(!auth()->check()) {
-            return redirect()->route('login');
+        if(!Leaderboard::where('song_id', $id)->exists()) {
+            return redirect()->back()->with('error', 'Rate does not exist');
         }
+        else {
+            $decrement = Leaderboard::where('song_id', $id)->value('count') - 1;
+            Leaderboard::updateOrCreate(
+                ["song_id" => $id],
+                ["count" => $decrement]
+            );
 
-        // check if the user have liked the song before, if not return an error message
-        if(!Favorites::where('user_id', auth()->id())->where('song_id', $request->id)->exists()){
-            return redirect()->back()->with('error', 'You have not liked this song');
+        // if like exists, delete it
+        $favorite = Favorites::join('leaderboards', 'favorites.song_id', '=', 'leaderboards.id')
+            ->where('favorites.user_id', auth()->id())
+            ->where('leaderboards.song_id', $id)
+            ->get();
+
+        $favorite[0]->delete();
+
+             
+            return redirect()->back()->with('success', 'Rate deleted successfully');
         }
-
-        // delete from user's favorite song table
-        Favorites::where('user_id', auth()->id())->where('song_id', $request->id)->delete();
-
-        return redirect()->back()->with('success', 'Song unliked successfully');
     }
 
 }

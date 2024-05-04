@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard/search', [SongController::class, 'search'])->name('song.search');
 Route::put('/favorite/{id}/', [SongController::class, 'storeFavorite'])->name('favorite.store');
-Route::delete('/favorite/{id}/', [RateController::class, 'destroyFavorite'])->name('favorite.destroy');
+Route::delete('/favorite/{id}/', [SongController::class, 'destroyFavorite'])->name('favorite.destroy');
 
 /* Authenticated URL */
 // Route::get('/dashboard', function () {

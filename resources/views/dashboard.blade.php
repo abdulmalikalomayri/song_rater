@@ -59,13 +59,14 @@
                             A software that develops products for software developers and developments.
                             </p> --}}
                         </div>
-                            @if($leaderboard->join('favorites', 'favorites.song_id', '=', 'leaderboards.id')->where('song_name', $item->id)->where('favorites.user_id', auth()->user()->id)->count() == 0)
+                            @if($leaderboard->join('favorites', 'favorites.song_id', '=', 'leaderboards.id')->where('leaderboards.song_id', $item->id)->where('favorites.user_id', auth()->user()->id)->count() == 0)
                             <form action="{{ route('favorite.store', ['id' => $item->id]) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 {{-- Get auth user id --}}
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id}}">
                                 <input type="hidden" name="song_name" value="{{ $item->name }}">
+                                <input type="hidden" name="artist_name" value="{{ $item->artists[0]->name }}">
                                 {{-- if user haven't favorite the song before --}}
                                 {{-- @if($leaderboard->where('songid', $item->id)->count() == 0) --}}
                                     <button type="submit" name="song_id" value="{{ $item->id }}" 
@@ -76,7 +77,7 @@
                             </form>
                             
                             @else
-                                <form action="{{ route('favorite.destroyFavorite', ['id' => $item->id]) }}" method="POST">
+                                <form action="{{ route('favorite.destroy', ['id' => $item->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 {{-- if user have liked the song before --}}

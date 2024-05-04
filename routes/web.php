@@ -22,6 +22,14 @@ Route::get('/',  function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/leaderboard',  function () {
+    return view('leaderboard');
+})->name('leaderboard');
+
+Route::get('/favoritesongs',  function () {
+    return view('profile.favoritesongs');
+})->name('profile.favoritesongs');
+
 Route::get('/dashboard/search', [SongController::class, 'search'])->name('song.search');
 Route::put('/favorite/{id}/', [SongController::class, 'storeFavorite'])->name('favorite.store');
 Route::delete('/favorite/{id}/', [SongController::class, 'destroyFavorite'])->name('favorite.destroy');

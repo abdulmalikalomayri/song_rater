@@ -24,9 +24,7 @@ Route::get('/',  function () {
 
 Route::get('/leaderboard', [SongController::class, 'leaderboard'])->name('leaderboard');
 
-Route::get('/favoritesongs',  function () {
-    return view('profile.favoritesongs');
-})->name('profile.favoritesongs');
+Route::get('/favoritesongs', [SongController::class, 'favorites'])->name('profile.favoritesongs');
 
 Route::get('/dashboard/search', [SongController::class, 'search'])->name('song.search');
 Route::put('/favorite/{id}/', [SongController::class, 'storeFavorite'])->name('favorite.store');

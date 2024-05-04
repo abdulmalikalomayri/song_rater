@@ -151,5 +151,15 @@ class SongController extends Controller
         return view('leaderboard', compact('leaderboard'));
     }
 
+    // user favorite songs list
+    public function favorites() 
+    {
+        $favorites = Leaderboard::join('favorites', 'favorites.song_id', '=', 'leaderboards.id')->where('favorites.user_id', auth()->user()->id)->get();
+
+        
+         
+        return view('profile.favoritesongs', compact('favorites'));
+    }
+
 }
 ?>

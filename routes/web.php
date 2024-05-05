@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 /* Public URL */
 Route::get('/',  function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('index');
+})->name('index');
 
 Route::get('/leaderboard', [SongController::class, 'leaderboard'])->name('leaderboard');
 

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-       <h2 class="font-semibold text-xl text-neutral-800 dark:text-neutral-200 leading-tight">
+       <h2 class="font-semibold text-xl text-emerald-700 dark:text-emerald-700 leading-tight">
           {{ __('Dashboard') }}
        </h2>
     </x-slot>
@@ -11,8 +11,11 @@
                 <h1 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100">Search for a song/artist</h1>
                 
                 <form action="{{ route('song.search') }}" method="GET">
-                    <input  type="text" name="query" placeholder="Search for a song" class="mb-8 mt-8 border-emerald-500 border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-emerald-500 "/>
-                    <button type="submit" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow mb-4 ">Search</button>
+                    <input  type="text" name="query" placeholder="Search for a song" class="mb-8 mt-8 border-emerald-500 border-input bg-background dark:text-emerald-600 dark:bg-neutral-950
+                    ring-offset-background placeholder:text-muted-foreground flex
+                    h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm 
+                    file:font-medium disabled:cursor-not-allowed disabled:opacity-50 focus:border-emerald-600"/>
+                    <button type="submit" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-emerald-600 hover:bg-emerald-700 text-lg shadow mb-4 ">Search</button>
                 </form>
                 {{-- send success alert if vote submited --}}
                 @if(session('success'))

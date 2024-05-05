@@ -17,10 +17,11 @@
     <body class="">
     @include('components.navbar')
     
-     <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-         
+    <!-- Page Content -->
+    <main>
+        {{ $slot }}
+    </main>
+    
+    @include('layouts.footer')
     </body>
 </html>

@@ -8,8 +8,29 @@
        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
           <div class="overflow-hidden shadow-sm sm:rounded-lg">
              <div class="p-6">
-                <h1 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100">Search for a song/artist</h1>
-                
+               <div class="w-[417px] h-[200px] relative">
+                  <div class="w-[417px] h-[155px] left-0 top-[45px] absolute flex-col justify-start items-start gap-2.5 inline-flex">
+                    <img class="w-[417px] h-[155px]" src="https://via.placeholder.com/417x155" />
+                    <div class="w-24 h-8 bg-green-400 rounded-2xl"></div>
+                    <div class="w-24 h-8 rounded-2xl border-4 border-green-700"></div>
+                  </div>
+                  <div class="w-[106px] h-[103px] left-[18px] top-0 absolute">
+                    <div class="w-[106px] h-[103px] left-0 top-0 absolute bg-red-500 rounded-[68.50px] border-4 border-rose-100"></div>
+                    <div class="w-[95px] h-[92px] left-[5px] top-[6px] absolute">
+                      <div class="w-[95px] h-[92px] left-0 top-0 absolute bg-red-500 rounded-[68.50px]"></div>
+                      <div class="w-[144.59px] h-[72.01px] left-[14px] top-[25px] absolute">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-[76px] h-[41px] left-[138px] top-[51px] absolute flex-col justify-start items-start inline-flex">
+                    <div class="text-gray-700 text-xl font-bold font-['Montserrat']">Waad</div>
+                    <div class="text-rose-100/opacity-70 text-sm font-normal font-['Montserrat']">@waad01</div>
+                  </div>
+                  <div class="w-[330px] h-[68px] left-[45px] top-[125px] absolute text-stone-50 text-base font-normal font-['Montserrat']">Hi ! im trying to design this app is<br/>gonna be amazing</div>
+                </div>
+
+                 
+
                 <form action="{{ route('song.search') }}" method="GET">
                     <input  type="text" name="query" placeholder="Search for a song" class="mb-8 mt-8 border-emerald-500 border-input bg-background dark:text-emerald-600 dark:bg-neutral-950
                     ring-offset-background placeholder:text-muted-foreground flex
